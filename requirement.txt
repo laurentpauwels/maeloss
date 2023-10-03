@@ -1,0 +1,13 @@
+Julia v1.6.2
+    Plots v1.20.0
+    QuadGK v2.4.1
+    Distributions v0.24.18
+    CSV v0.8.5
+    DataFrames v1.2.2 
+    Distributions v0.24.18
+    Optim v1.4.1
+    Kronecker v0.4.4
+    HypothesisTests v0.10.4
+    StatsPlots v0.14.26
+    PrettyTables v1.1.0
+    

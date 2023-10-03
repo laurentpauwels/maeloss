@@ -1,0 +1,363 @@
+\documentclass[a4paper, 11pt]{article} 
+\usepackage{generalv3, fcsymbol}
+\usepackage{color, rotating}
+\usepackage{subfig}
+\usepackage{psfrag}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{bbm}
+%\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+
+\usepackage{amsthm}
+\newtheorem{prop}{Proposion}
+\newtheorem{coro}{Corollary}
+\renewcommand{\theprop}{S.\arabic{prop}}
+\renewcommand{\thecoro}{S.\arabic{coro}}
+
+\renewcommand{\thesection}{S.\arabic{section}}
+\renewcommand{\theequation}{S.\arabic{equation}}
+
+\DeclareMathOperator{\MAE}{MAE}
+\DeclareMathOperator{\MSE}{MSE}
+%\title{Optimal combination of forecasts under linear constraints} 
+\title{Online Supplement to ``Optimal combination of forecasts with mean absolute error loss"}
+ 
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\author[1]{Felix Chan} 
+
+\affil[1]{\small School of Economics and Finance, Curtin University, Perth, WA 6845, Australia. Email: Felix.Chan@cbs.curtin.edu.au. }
+\author[2]{Laurent Pauwels}
+\affil[2]{University of Sydney Business School, Darlington, NSW 2008, Australia and Centre for Applied Macroeconomic Analysis (CAMA), ANU. Email: laurent.pauwels@sydney.edu.au}
+
+\date{September 2021}
+\keywords{Forecasting, forecast combination, forecast accuracy, mean absolute deviation, optimal weights.} 
+
+%\JEL{C53, C33}
+%\JEL{C33, C53, C61}
+
+
+\begin{document} 
+\maketitle
+\onehalfspacing
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+All numbers of equations, problems, theorems, corollaries, lemmas and propositions refer to those used in the paper ``Optimal combination of forecasts with mean absolute error loss" by Felix Chan and Laurent Pauwels, unless otherwise specified.
+
+
+\section{SUPPLEMENTARY RESULTS}
+
+\subsection{Derivation of Problem (7)}
+The optimization problem of combining $k$ forecasts at time $t$ is expressed as 
+\begin{equation*}\label{eq:opt}
+\begin{split}
+{\underset{\bfa}{\text{minimize}}} & \quad \E \left \vert \nu_{0t} + \bfu_t^\top \bfa \right \vert \\
+\text{subject to} & \quad \bfone^\top \bfa = 1,
+\end{split}
+\end{equation*}
+
+    \noindent where the loss function is MAE and $\E$ denotes the expected value. The optimal solution to the above problem is the weight that minimizes the forecast specific idiosyncratic noises $\bfu_t =\left ( u_{1t}, \ldots, u_{kt} \right )^{\top}$. Let $\left ( \R^{k+1}, \Im, G \right )$ be a probability space and define 
+    \begin{align*}
+        X^+_\bfa =& \left \{ (\nu_{0t}, \bfu_t ): \nu_{0t} + \bfu_t^\top\bfa > 0 \right \} \\ 
+        X^-_\bfa =& \left \{ (\nu_{0t}, \bfu_t ): \nu_{0t} + \bfu_t^\top\bfa < 0 \right \} \\
+        X^0_\bfa =& \left \{ (\nu_{0t}, \bfu_t ): \nu_{0t} + \bfu_t^\top\bfa = 0 \right \}, 
+    \end{align*}
+    then 
+    \begin{equation*} 
+        \begin{split} 
+            \E & \left \vert \nu_{0t} + \bfu_t^\top \bfa \right \vert = \\
+               &\int_{X^+_\bfa} \left (\nu_{0t} + \bfu_t^\top \bfa \right ) G \left (dv_t \right ) - \int_{X^-_\bfa} \left ( \nu_{0t} + \bfu_t^\top \bfa \right ) G \left ( dv_t \right ) \\
+               &+  \int_{X^0_\bfa} \left (\nu_{0t} + \bfu_t^\top \bfa \right ) G \left ( dv_t \right ), 
+        \end{split} 
+    \end{equation*} 
+    \noindent where $dv_t = d\nu_{0t}du_{1t}\ldots du_{kt}$. Note that the last integral is 0 because $\nu_{0t} + \bfu_t^\top \bfa = 0$ under the set $X^0_{\bfa}$. Moreover, under the assumption of stationarity 
+    \begin{equation*} 
+        G\left ( dv \right ) = G \left ( dv_t \right ) \qquad \forall t. 
+    \end{equation*} 
+    \noindent As such, the subscript $t$ is omitted from this point. The optimization problem above can then be restated as 
+ \begin{equation*} \label{eq:main}
+    \begin{split}
+	\text{minimize} & \quad \int_{X^+_\bfa} \left ( \nu_0 + \bfu^\top \bfa \right ) G(dv) - \int_{X^-_\bfa} \left ( \nu_0 + \bfu^\top \bfa \right ) G(dv)  \\
+	\text{subject to} & \quad \bfone^\top \bfa = 1. 
+     \end{split}
+\end{equation*}
+
+
+\subsection{Derivation of Equation (11)}
+
+
+
+Equation (10) of Theorem 1 has a more intuitive representation. Define $\mathbbm{1}^+_{-i} (\bfa)$ as an indicator function such that $\mathbbm{1}^+_{-i} (\bfa) =1$ if $u_i<0$ (indicated by the subscript) and $\bfu \in X^+_{\bfa}$ (indicated by the superscript) but 0 otherwise for all $i$. Similarly, $\mathbbm{1}^-_{+i} (\bfa)$ is an indicator function such that $\mathbbm{1}^-_{+i} (\bfa)=1$ if $u_i>0$ and $\bfu \in X^-_{\bfa}$ but 0 otherwise. $\mathbbm{1}^-_{-i} (\bfa)$ and $\mathbbm{1}^+_{+i} (\bfa)$ are also defined in a similar manner. Then, by direct substitution the first order condition, $\bfomega (\bfa) = 0$, can be written as:
+    \begin{equation*} 
+	\int u_i \left ( \mathbbm{1}^+_{+i} (\bfa^*) - \mathbbm{1}^-_{+i} (\bfa^*) \right ) G(dv) = \int u_i \left ( \mathbbm{1}^+_{-i} (\bfa^*) - \mathbbm{1}^-_{-i} (\bfa^*) \right ) G(dv). 
+    \end{equation*} 
+    This can be expressed more conveniently in terms of the expectation of $\bfu$ conditional on $\xi(a)$, namely, 
+    \begin{equation*} 
+        \E \left [ \bfu | \nu_0 + \bfu^\top\bfa^* > 0 \right ] \text{Pr} \left ( \nu_0 + \bfu^\top\bfa^* > 0 \right ) = \E \left [ \bfu | \nu_0 + \bfu^\top\bfa^* < 0 \right ] \text{Pr} \left ( \nu_0 + \bfu^\top\bfa^* < 0 \right ).
+    \end{equation*} 
+
+
+\subsection{Corollary to Theorem 1: Including the best forecast in combination set}
+   The optimisation problems as stated in (4) and (7) intentionally excludes the best forecast, $f_{0t}$, from the combination set. This is because the inclusion of $f_{0t}$ would lead to a corner solution as stated in Corollary \ref{col:best_model}. 
+   \begin{coro} \label{col:best_model} 
+      If the best model, $f_{0t}$, is included in the choice set, then $\bfa^* = \bfe_1$. 
+   \end{coro}
+
+
+\noindent Corollary \ref{col:best_model} implies that $\E \left | \nu_0 \right |\leq \E \left | \nu_0 + \bfu^\top\bfa^{*} \right |$ since the best forecast would always minimize the MAE loss function. The result also shows that forecast combination will produce a forecast with lower mean absolute deviations than a single model since $\bfa^* \neq \bfe_i$ for any $i$ in general.    
+   \begin{proving}[Corollary \ref{col:best_model}] 
+\noindent It is sufficient to verify that $\bfe_1$ satisfies equation (10). Rewrite $\nu_{0t} = \nu_{0t} + u_{0t}$ where $u_{0t} = 0$ for all $t$. Since $v_{0t}$ and $u_{it}$ are independent, it is obvious that $\E (u_{it} | z_t>0) = \E (u_{it} | z_t<0) = 0$. Hence, $\bfe_i$ satisfies equation (10). This completes the proof.  
+   \end{proving}
+
+\subsection{Proposition \ref{col:optimal_normality}: Normal case}
+ 
+      \begin{prop} \label{col:optimal_normality} 
+      Denote $\bfnu = \left (\nu_0, \bfu^\top \right )^\top$, $\E \left ( \bfu \bfu^\top \right ) = \bfOmega$ and $\bfnu \sim N \left ( \bfzero, \bfOmega_\nu \right )$ with 
+      \begin{equation*}
+	 \bfOmega_\nu = \begin{pmatrix} \sigma^2_\nu & 0 \\ 0 & \bfOmega \end{pmatrix}
+      \end{equation*} 
+      \noindent then 
+	    \begin{equation*} 
+	       \bfa^*_{\MAE} = \bfa^*_{\MSE}
+	    \end{equation*} 
+      \noindent where $\bfa^*_{\MAE}$ is the vector that satisfies equation (10) and $\bfa^*_{\MSE}$ is the optimal weight vector when minimizing the Mean Square Errors (MSE) loss function. Specifically, $\bfOmega \bfa^*_{\MSE} = \bfone \bfa^{*\top}_{\MSE} \bfOmega \bfa^{*}_{\MSE}$ as shown in \cite{ChanPauwels:2018}.   
+   \end{prop} 
+
+   
+   \begin{proving}[Proposition \ref{col:optimal_normality}] 
+\noindent Let $z = \nu_0 + \bfu^\top\bfa$ then $z \sim N(0, \sigma^2_z)$ with $\sigma^2_z = \sigma^2_0 + \bfa^\top \Omega \bfa$. Moreover, let $\sigma_{iz} = \E (u_iz)$ then $\sigma_{iz} = \sigma_0  + \bfe_i\bfOmega \bfa$ where $\bfe_i$ is a $k\times 1$ unit vector with the $i^{th}$ element equals to 1 and 0 otherwise. Since the normal distribution is symmetric around its mean, equation (10) implies that 
+\begin{equation*}
+   \E (u_i | z > 0) - \E (u_i | z < 0) = \E (u_j | z>0 - \E(u_j | z< 0). 
+\end{equation*} 
+\noindent Let $f_z(z|u_i)$ and $f_i(u)$ denote the conditional density of $z$ conditional on $u_i$ and the density of $u_i$, respectively, then 
+\begin{align}
+   \E ( u_i | z > 0 ) =& \frac{1}{2} \int^\infty_{-\infty} \int ^\infty_0 u f_z(z|u) f_i(u) dzdu \notag \\
+   =& \frac{1}{2\sqrt{2\pi \sigma_i^2}}\int^\infty_{-\infty} u \exp \left ( -\frac{1}{2} \frac{u_i^2}{\sigma^2_i} \right ) \Phi \left ( \frac{\sigma_{iz}}{\left (\sigma^2_i \sigma^2_z - \sigma^2_{iz}\right )^{\frac{1}{2}}} \frac{u_i}{\sigma_i} \right ) du\notag \\
+   =& \frac{\sigma_i}{2} \int^\infty_{-\infty} w \phi(w) \Phi \left (\delta_i w \right ) dw  \label{eq:skew_normal}
+\end{align}
+\noindent where $\phi(x)$ and $\Phi(x)$ denote the normal density and the normal accumulative probability functions, respectively with 
+\begin{equation*} 
+   \delta _i = \frac{\sigma_{iz}}{\left ( \sigma^2_i \sigma^2_z - \sigma^2_{iz} \right )^{\frac{1}{2}} }.
+\end{equation*} 
+\noindent Note that equation (\ref{eq:skew_normal}) is equivalent to $\E (w)$ if $w$ follows a skew-normal distribution as defined in \cite{azzalini:1985} with the skew parameter equals to $\delta_i$, i.e. $w\sim SN(\delta_i)$. Therefore, 
+\begin{align*} 
+   \E (u_i | z > 0 ) =& \frac{\sigma^2_i}{2} \E (w) \\
+   =& \frac{1}{\sqrt{2\pi}} \frac{\sigma_{iz}}{\sigma_z}.
+\end{align*} 
+Following the same arguments, it is straightforward to show that:
+\begin{align*} 
+   \E (u_i | z<0 ) =& -\frac{1}{\sqrt{2\pi}} \frac{\sigma_{iz}}{\sigma_z}. 
+\end{align*} 
+\noindent This implies 
+\begin{equation*} 
+   \E (u_i | z>0) - \E (u_i | z<0) = \frac{2}{\sqrt{2\pi}} \frac{\sigma_{iz}}{\sigma_z}.
+\end{equation*}
+\noindent Substitute this to equation (9) yields
+\begin{equation*} 
+   \sigma_{iz} = \sigma_{jz}.
+\end{equation*}
+\noindent Since $\sigma^2_{iz} = \sigma^2_0 + \bfe_i \bfOmega \bfa^*$ and given the solutions to the optimisation problems for the MSE and MAE loss functions are unique, this implies:
+\begin{equation}
+   \bfOmega \bfa^* = \left ( \bfa^{*\prime} \bfOmega \bfa^* \right ) \bfone. 
+\end{equation} 
+\noindent This completes the proof. 
+   \end{proving}
+  
+
+\section{COMPLETE SIMULATION RESULTS}
+
+\subsection{Simulation framework}
+We generate five forecasts errors from skew Normal distributions only and then from multivariate $t_3$ distributions only. Two sets of optimal weights of the forecast combination obtained, one set by minimizing MAE loss and the other by minimizinng MSE loss. The simulations consist in comparing the optimal weights obtained from both minimization and provide evidence that the weights are equivalent as shown by the theory. 
+The sample sizes are $N = \{20,30,50,100,200,300,400,500,600,700,800,900,1000 \}$. There are 5000 replications for each sample size. We now describe how we simulate random variates.\footnote{The simulation notebook with the code and results are available \href{https://gitlab.com/laurent_pauwels/forecast-combination-mae/-/blob/master/Section\%204\%20Simulations/SimulationsJulia.ipynb}{here}.} 
+
+
+\subsection{Multivariate Skew Normal random variables}
+The multivariate skewed normal depends on three parameter matrices namely, a $p\times 1$ vector $\bfxi$, a $p\times p$ matrix $\bfLambda$, and a $p\times p$ matrix $\bfSigma$. One can follow the steps below to simulate the $p$ skewed normal random variates. 
+
+\begin{enumerate}[{Step} 1.]
+    \item Set the number of realisations (sample size) $N$ we wish to simulate and the number of variates, $p$.  
+    \item Set the various parameter matrices namely, $\bfxi$, $\bfLambda$ and $\bfSigma$. 
+    \item Simulate a $N\times p$ random matrix, $\bfU$, which follow the multivariate normal distribution $N(\bfzero, \bfSigma)$. 
+    \item Simulate a $N\times p$ random matrix, $\boldsymbol \tau$, which follow the standard multivariate normal distribution $N(\bfzero, \bfI)$.  
+    \item Construct the multivariate skewed normal random vector as $\bfZ_{SN} = \bfxi'\otimes \bfi_n + \bfLambda |\boldsymbol \tau| + \bfU$ where $|\boldsymbol \tau|$ denotes the absolute values of each element in $\boldsymbol \tau$. 
+\end{enumerate}	
+
+\noindent The mean of $\bfZ_{SN}$ is 
+
+\begin{equation}
+    \E (\bfZ_{SN}) = \bfxi + \sqrt{\frac{2}{\pi}} \bfLambda \bfi
+\end{equation}
+\noindent where $\bfi$ is a vector of ones. This implies if we wish to have unbiased forecast, we should set 
+\begin{equation} 
+    \bfxi = -\sqrt{\frac{2}{\pi}} \bfLambda \bfi. 
+\end{equation}
+\noindent The variance-covariance matrix, $\bfOmega$, of $\bfZ_{SN}$ is 
+\begin{equation}
+    \bfOmega = \bfSigma + \left ( 1 - \frac{2}{\pi} \right ) \bfLambda \bfLambda'
+\end{equation} 
+\noindent For simplicity, we set $\bfLambda$ as a diagonal matrix which means $\bfLambda\bfLambda'$ will also be a diagonal matrix with squares of the diagonal elements of $\bfLambda$. Note that these elements are not bounded as long as $\bfOmega$ is a valid variance-covariance matrix i.e.~positive semi-definite. We create a positive semi-definite matrix, $\bfSigma$ and a diagonal matrix $\bfLambda$. The elements in $\bfLambda$ can be either positive or negative, and even be 0 (which means that one would include some normal random variates in the mix). Now since $\bfSigma$ and $\bfLambda\bfLambda'$ are both positive definite, then the variance-covariance $\bfOmega$ will also be positive semi-definite. The easiest way to generate a positive semi-definite matrix is to create a $p\times p$ matrix $\bfA$ and then set $\bfSigma = \bfA\bfA'$. $\bfA$ can be created by drawing from a normal random generator. Here are the two sets of parameters we are using to produce the simulation results.\par
+
+\section*{Set 1:} 
+\[
+\bfLambda= \diag \begin{pmatrix}
+1.5 \\ 
+-1\\ 
+1.2\\ 
+-1.8\\ 
+1.9 
+\end{pmatrix} 
+\textrm{ and }  \bfSigma=  
+\begin{pmatrix}
+6.16&	-1.51	& 3.34&	-4.41	&-3.88\\
+-1.51&	10.49&	-3.31&	2.47&	-0.99\\
+3.34&	-3.31	&7.77&	-1.10	&-2.96\\
+-4.41&	2.47&	-1.10&	11.13&	4.00\\
+-3.88	&-0.99&	-2.96	&4.00&	8.61
+\end{pmatrix} 
+\]
+which implies that the weights are $a_1 = 0.290$, $a_2 = 0.193$, $a_3 = 0.182$, $a_4 = 0.079$, and $a_5 = 0.255$.. The weights can be computed directly from the closed form solution $\bfa^* = \bfOmega^{-1} \bfi {\left ( \bfi'\bfOmega^{-1}\bfi \right )}^{-1}$, where $ \bfOmega = \bfSigma + \left ( 1 - \frac{2}{\pi} \right ) \bfLambda \bfLambda'$.
+
+\section*{Set 2:} 
+\[
+\bfLambda= \diag \begin{pmatrix}
+-1\\
+-0.8\\
+0.2\\
+-0.4\\
+0.7
+\end{pmatrix} 
+\textrm{ and }  \bfSigma=  
+\begin{pmatrix}
+6.11&	3.18&	-0.99	&1.41&	2.16\\
+3.18&	7.63&	3.70&	-2.82&	1.32\\
+-0.99	&3.70&	3.51&	-3.40	&0.19\\
+1.41&	-2.82&	-3.40	&4.59&	0.78\\
+2.16&	1.32&	0.19&	0.78&	3.40
+\end{pmatrix} 
+\]
+which implies that the weights are $a_1 = 0.259$, $a_2 = -0.311$, $a_3 = 0.805$, $a_4 = 0.374$, and $a_5 = -0.128$.
+
+\subsection{Multivariate $t$ random variables}
+The forecast errors generated with multivariate $t_3$ distributions also make use of the same $\bfOmega$ variance-covariance matrices in both sets: $\bfZ_{t3} \sim t_3 (\bfzero, \bfOmega)$. Using the same  $\bfOmega$ variance-covariance matrices imply that the weights of the forecast combination with multivariate $t_3$ variates will be the same as the skew normal variates.
+
+\subsection{Simulation results}
+The extended results for Skew Normal forecast errors and $t_3$ forecast errors are presented here below. Only weights $a_1$ to $a_4$ are shown since $a_5 = 1 - \sum_{i=1}^4 a_i$.
+
+\begin{figure}[htbp]
+\centering 
+\par
+{\footnotesize \psfragscanon
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a1sn1.pdf}}
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a2sn1.pdf}}
+\newline
+}
+\par
+{\footnotesize \psfragscanon
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a3sn1.pdf}}
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a4sn1.pdf}}
+\newline
+}
+\caption{Skew Normal (Set 1)}
+\label{fig:simulationsum}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering 
+\par
+{\footnotesize \psfragscanon
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a1sn2.pdf}}
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a2sn2.pdf}}
+\newline
+}
+\par
+{\footnotesize \psfragscanon
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a3sn2.pdf}}
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a4sn2.pdf}}
+\newline
+}
+\caption{Skew Normal (Set 2)}
+\label{fig:simulationsum}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+\centering 
+\par
+{\footnotesize \psfragscanon
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a1t1.pdf}}
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a2t1.pdf}}
+\newline
+}
+\par
+{\footnotesize \psfragscanon
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a3t1.pdf}}
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a4t1.pdf}}
+\newline
+}
+\caption{$t_3$ (Set 1)}
+\label{fig:simulationsum}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+\centering 
+\par
+{\footnotesize \psfragscanon
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a1t2.pdf}}
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a2t2.pdf}}
+\newline
+}
+\par
+{\footnotesize \psfragscanon
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a3t2.pdf}}
+{   \includegraphics[scale=1,width=.45\textwidth,angle=0]{../MAD_MC/figure_a4t2.pdf}}
+\newline
+}
+\caption{$t_3$ (Set 2)}
+\label{fig:simulationsum}
+\end{figure}
+
+
+
+
+%\begin{figure}[htbp]
+%\centering 
+%\par
+%{\footnotesize
+%\subfloat[$fcst_{37}$ \& $fcst_{95}$]{   
+%\includegraphics[scale=1,width=.5\textwidth,angle=0]{../SPF_ECB/Graphs/Comb1_MAD_Infl.eps}}%
+%\subfloat[$fcst_{37}$ \& $fcst_{89}$]{   
+%\includegraphics[scale=1,width=.5\textwidth,angle=0]{../SPF_ECB/Graphs/Comb2_MAD_Infl.eps}}% 
+%\newline
+%}
+%\par
+%{\footnotesize 
+%\subfloat[$fcst_{94}$ \& $fcst_{89}$]{   
+%\includegraphics[scale=1,width=.5\textwidth,angle=0]{../SPF_ECB/Graphs/Comb3_MAD_Infl.eps}}%
+%\subfloat[$fcst_{94}$ \& $fcst_{37}$]{   
+%\includegraphics[scale=1,width=.5\textwidth,angle=0]{../SPF_ECB/Graphs/Comb4_MAD_Infl.eps}}%
+%\newline
+%}
+%\par
+%{\footnotesize 
+%\subfloat[$fcst_{94}$ \& $fcst_{95}$]{   
+%\includegraphics[scale=1,width=.5\textwidth,angle=0]{../SPF_ECB/Graphs/Comb5_MAD_Infl.eps}}%
+%\subfloat[$fcst_{95}$ \& $fcst_{89}$]{   
+%\includegraphics[scale=1,width=.5\textwidth,angle=0]{../SPF_ECB/Graphs/Comb6_MAD_Infl.eps}}%
+%\newline
+%}
+%\caption{\small Illustration results: MAD loss function. Combining two professional forecasters' variables. The blue line shows the MAD loss function with optimal weights obtained from minimizing the MSE loss function.}
+%\label{fig:illustration}
+%\end{figure}
+
+\newpage
+\bibliographystyle{apa}
+\bibliography{forecastcomb_mad}
+
+
+\end{document}
