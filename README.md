@@ -27,6 +27,8 @@ The Julia Language code is presented in a Jupyter Notebook.
 
 3. `EmpiricsJulia.ipynb`: Jupyter Notebook with Julia Language to conduct the empirical study found in Section 5. 
 
+    `_maeFunction.jl`: This `jl` file contains all the functions required to reproduce the results in the Jupyter Notebooks. This file is *NOT necessary* to run the Jupyter Notebook but it might be useful if the code is run in scripts outside of Jupyter Notebooks.
+
 ### matlab
 
 1. `Simulations.m`: MATLAB script that conducts the simulations found in Section 4 of the paper. 
