@@ -1,4 +1,4 @@
-# Replication files for "Combining forecasts with mean absolute error scoring rule"
+# Replication files for "Combining forecasts with mean absolute error loss"
 
 ## Content
 This repository contains codes, data, and other supplementary materials by [Felix Chan](mailto:F.Chan@curtin.edu.au) and [Laurent Pauwels](mailto:laurent.pauwels@sydney.edu.au) for the paper entitled 
